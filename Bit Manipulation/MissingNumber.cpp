@@ -1,13 +1,19 @@
 class Solution {
 public:
     int missingNumber(vector<int>& nums) {
-        int ans=nums.size();
+        int allXOR = 0;
 
-        for(int i=0;i<nums.size();i++){
-            ans = ans^i;
-            ans = ans^nums[i];
+        // XOR all numbers in range [0, n]
+        for (int i = 0; i <= nums.size(); i++) {
+        allXOR = allXOR ^ i;
         }
 
-        return ans;
+        // XOR all numbers in the given array
+        for (int i = 0; i < nums.size(); i++) {
+        allXOR = allXOR ^ nums[i];
+        }
+
+        // The missing number
+        return allXOR;
     }
 };
