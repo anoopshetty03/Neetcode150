@@ -7,19 +7,16 @@ public:
             freqMap[num]++;
         }
 
-        priority_queue<pair<int, int>, vector<pair<int, int>>, greater<pair<int, int>>> minHeap;
+        priority_queue<pair<int, int>> maxHeap;
 
         for (const auto& entry : freqMap) {
-            minHeap.push({entry.second, entry.first});
-            if (minHeap.size() > k) {
-                minHeap.pop();
-            }
+            maxHeap.push({entry.second, entry.first});
         }
 
         vector<int> ans;
-        while (!minHeap.empty()) {
-            ans.push_back(minHeap.top().second);
-            minHeap.pop();
+        for(int i=0;i<k;i++) {
+            ans.push_back(maxHeap.top().second);
+            maxHeap.pop();
         }
 
         return ans;
